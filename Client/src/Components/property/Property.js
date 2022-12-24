@@ -59,7 +59,6 @@ const Property = () => {
 
   useEffect(() => {
     const afterLogin = () => {
-      console.log("Inside afterLogin function property.js useEffect");
       axios({
         method: "get",
         url: "https://realestateserver-crg2.onrender.com/property",
@@ -71,19 +70,11 @@ const Property = () => {
         credentials: "include",
       })
         .then((res) => {
-          console.log("Inside then block of property.js");
           setUsers(res.data.property);
         })
         .catch((err) => {
-          console.log("Inside catch block of property.js");
           console.log(err);
-
-          if (
-            err.response.data === "Unauthorized user" ||
-            err.response.status === 409
-          ) {
-            navigate("/");
-          }
+          navigate("/");
         });
     };
 
